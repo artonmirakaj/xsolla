@@ -13,10 +13,8 @@ async function mockAxiosCall(url) {
       return {
         ok: true,
         status: 200,
-        resFilms: {
-          data: {
-            results: films
-          }
+        data: {
+          results: films
         }
       };
     }
@@ -24,10 +22,8 @@ async function mockAxiosCall(url) {
       return {
         ok: true,
         status: 200,
-        resPeople: {
-          data: {
-            results: people
-          }
+        data: {
+          results: people
         }
       };
     }
@@ -35,10 +31,8 @@ async function mockAxiosCall(url) {
       return {
         ok: true,
         status: 200,
-        resPlanets: {
-          data: {
-            results: planets
-          }
+        data: {
+          results: planets
         }
       };
     }
@@ -64,16 +58,16 @@ test('load films', async () => {
     });
 });
 
-// test('load people', async () => {
-//     render(<App />, { wrapper: BrowserRouter });
-//     await waitFor(() => {
-//       expect(axios.get).toHaveBeenCalledWith('https://swapi.dev/api/people');
-//     });
-// });
+test('load people', async () => {
+    render(<App />, { wrapper: BrowserRouter });
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledWith('https://swapi.dev/api/people');
+    });
+});
 
-// test('load planets', async () => {
-//     render(<App />, { wrapper: BrowserRouter });
-//     await waitFor(() => {
-//       expect(axios.get).toHaveBeenCalledWith('https://swapi.dev/api/planets');
-//     });
-// });
+test('load planets', async () => {
+    render(<App />, { wrapper: BrowserRouter });
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledWith('https://swapi.dev/api/planets');
+    });
+});
