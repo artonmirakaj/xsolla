@@ -1,17 +1,17 @@
 import React from 'react'
 import {render, screen, act} from '@testing-library/react'
 import '@testing-library/jest-dom'
-import Films from './Films';
+import Planets from './Planets';
 
 test('Renders Film Component', async () => {
   const data = [
     {
-      title: 'A New Hope'
+      name: 'Tatooine'
     }
   ]
   act(() => {
-    render(<Films data={data} />);
+    render(<Planets data={data} />);
   })
 
-  expect(screen.getByText(/A New Hope/)).toBeInTheDocument();
+  expect(screen.getByText(/Tatooine/)).toBeInTheDocument();
 })

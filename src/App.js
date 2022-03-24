@@ -17,16 +17,20 @@ function App() {
 
   useEffect(() => {
     const fetchStarWarsData = async () => {
-      let resFilms = await axios.get('https://swapi.dev/api/films');
-      let resPeople = await axios.get('https://swapi.dev/api/people');
-      let resPlanets = await axios.get('https://swapi.dev/api/planets');
+      try {
+        let resFilms = await axios.get('https://swapi.dev/api/films');
+        let resPeople = await axios.get('https://swapi.dev/api/people');
+        let resPlanets = await axios.get('https://swapi.dev/api/planets');
+        setStarWars({
+          ...starWars,
+          films: resFilms.data.results,
+          people: resPeople.data.results,
+          planets: resPlanets.data.results,
+        })
+      } catch (error) {
+        console.log(error);
+      }
 
-    setStarWars({
-      ...starWars,
-      films: resFilms.data.results,
-      people: resPeople.data.results,
-      planets: resPlanets.data.results,
-    })
   }
     fetchStarWarsData()
   }, [])

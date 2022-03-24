@@ -51,23 +51,26 @@ test('renders Welcome Page', async () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-test('load films', async () => {
+test('Test GET /films with 200 success', async () => {
     render(<App />, { wrapper: BrowserRouter });
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledWith('https://swapi.dev/api/films');
+      expect(200);
     });
 });
 
-test('load people', async () => {
+test('Test GET /people with 200 success', async () => {
     render(<App />, { wrapper: BrowserRouter });
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledWith('https://swapi.dev/api/people');
+      expect(200);
     });
 });
 
-test('load planets', async () => {
+test('Test GET /planets with 200 success', async () => {
     render(<App />, { wrapper: BrowserRouter });
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledWith('https://swapi.dev/api/planets');
+      expect(200);
     });
 });
