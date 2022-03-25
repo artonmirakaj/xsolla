@@ -6,6 +6,7 @@ import axios from 'axios';
 import films from './mock/films'
 import people from './mock/people'
 import planets from './mock/planets'
+import { act } from 'react-dom/test-utils';
 
 async function mockAxiosCall(url) {
   switch (url) {
@@ -46,14 +47,16 @@ beforeAll(() => jest.spyOn(axios, 'get'));
 beforeEach(() => axios.get.mockImplementation(mockAxiosCall));
 
 test('renders Welcome Page', async () => {
-  render(<App />, { wrapper: BrowserRouter });
+  await act(async () => {
+    render(<App />, { wrapper: BrowserRouter });
+  })
   const linkElement = await screen.getByText(/Welcome to Star Wars/i);
   expect(linkElement).toBeInTheDocument();
 });
 
 test('Test GET /films with 200 success', async () => {
-    render(<App />, { wrapper: BrowserRouter });
-    await waitFor(() => {
+  render(<App />, { wrapper: BrowserRouter });
+  await waitFor(() => {      
       expect(axios.get).toHaveBeenCalledWith('https://swapi.dev/api/films');
       expect(200);
     });
